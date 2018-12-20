@@ -1,0 +1,19 @@
+{
+  "name": "docker_nodejs_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+    "os": "^0.1.1",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
