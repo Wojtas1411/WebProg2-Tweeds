@@ -9,9 +9,6 @@ var app = express();
 users_repo = require("./repos/users")
 
 app.get('/database', function(req, res, next) {
-  users_repo.get_pwd_by_username("test", function(result){
-    console.log(result)
-  });
   users_repo.list_all_users_json(req, res);
 });
 
