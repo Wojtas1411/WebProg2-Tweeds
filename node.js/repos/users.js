@@ -27,8 +27,14 @@ exports.get_user_by_username = function(username, callback){
         "SELECT * FROM `users` WHERE `username`=?",
         [username],
         function(err, results, fields){
-            if(err) throw err;
-            callback(results[0]);
+            if(err){
+                console.log("User not found");
+                console.log(err);
+                callback(false);
+            } else {
+                console.log("User found");
+                callback(results[0]);
+            }
         }
     )
 }
