@@ -71,3 +71,5 @@ exports.authenticate = function(req, res){
         });
     }
 }
+
+//TODO logout

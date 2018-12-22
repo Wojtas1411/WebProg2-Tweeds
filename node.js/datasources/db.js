@@ -6,6 +6,6 @@ module.exports = mysql.createPool({
     password: 'webprog',
     database: 'webprog',
     waitForConnections: true,
-    connectionLimit: 10,
+    connectionLimit: 25,
     queueLimit: 0
   })

@@ -90,7 +90,7 @@ exports.delete_course = function(course, callback){
 
 exports.get_all_courses_with_registers = function(user_id, callback){
     client.execute(
-        `SELECT c.id as id, c.name, c.program, c.lecturer ,COALESCE(us.subscribes,0) FROM courses c
+        `SELECT c.id as id, c.name, c.program, c.lecturer ,COALESCE(us.subscribes,0) as follows FROM courses c
         LEFT OUTER JOIN (SELECT r.course_id, 1 as subscribes
         FROM registers r WHERE user_id=?) us ON c.id=us.course_id`,
         [user_id],
