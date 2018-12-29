@@ -52,15 +52,15 @@ app.delete('/channels', function(req, res, next){
 
 //TODO login1
 app.post('/login1', function(req, res, next){
-
+  api.login1(req, res);
 });
 //TODO login2
 app.post('/login2', function(req, res, next){
-
+  api.login2(req, res);
 });
 //TODO logout
 app.post('logout', function(req, res, next){
-
+  api.logout(req, res);
 });
 
 //create http server

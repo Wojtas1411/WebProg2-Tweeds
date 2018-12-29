@@ -79,8 +79,8 @@ var r1;
 var r2;
 
 exports.login1 = function(req, res){
-    var r1 = req.query.r1;
-    var r2 = generate_random_string();
+    r1 = req.query.r1;
+    r2 = generate_random_string();
     res.send(r2);
 }
 
