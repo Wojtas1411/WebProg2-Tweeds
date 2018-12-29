@@ -77,3 +77,13 @@ exports.get_user_id_from_session = function(session_id){
     }
     return false;
 }
+
+exports.get_username_from_session = function(session_id){
+    invalidate_expired_sessions();
+    for(var i=0; i<sessions.length; i++){
+        if(session_id.localeCompare(sessions[i].id)==0){
+            return sessions[i].user.username;
+        }
+    }
+    return false;
+}

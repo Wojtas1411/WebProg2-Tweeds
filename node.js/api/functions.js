@@ -4,8 +4,9 @@ login in security/authentication.js
 
 sessions_manager = require("../security/sessionsManager");
 tweets_repo = require("../repos/tweets");
-courses_repo = require("../repos/courses")
+courses_repo = require("../repos/courses");
 registers_repo = require("../repos/registers");
+auth = require("../security/authentication");
 
 /*
 request query
@@ -91,7 +92,8 @@ exports.unregister_from_channel = function(req, res){
         res.send("Invalid session");
     }
 }
-
+//web socket clients
+clients=[];
 /*
 request params
 session_id
@@ -110,7 +112,17 @@ exports.send_tweet = function(req, res){
             tweet.timestamp = new Date();
             tweets_repo.add_new(tweet, function(result){
                 if(result == true){
+                    //change user id to username
+                    tweet.user_id = sessions_manager.get_username_from_session(req.query.session_id);
+
                     //TODO send with websocket
+
+                    //experiment
+                    for(var i=0; i<clients.length; i++){
+                        clients[i].send(JSON.stringify(tweet));
+                    }
+                    //dummy broadcast
+
                     res.send("success");
                 } else {
                     res.send("error");
@@ -122,4 +134,20 @@ exports.send_tweet = function(req, res){
     } else {
         res.send("Invalid session");
     }
+}
+
+exports.login1 = function(req, res){
+    auth.login1(req, res);
+}
+
+exports.login2 = function(req, res){
+    auth.login2(req, res);
+}
+
+exports.logout = function(req, res){
+    auth.logout(req, res);
+}
+
+exports.connection_handler = function(ws, req){
+    clients.push(ws);
 }

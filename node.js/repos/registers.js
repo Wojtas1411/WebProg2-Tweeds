@@ -33,3 +33,23 @@ exports.delete_register = function(user_id, course_id, callback){
         }
     )
 }
+
+exports.is_user_registerd_to_course = function(user_id, course_id, callback){
+    client.execute(
+        "select exists(select * from registers where user_id=? and course_id=?) as exist",
+        [user_id, course_id],
+        function(err, results){
+            if(err){
+                console.log(err);
+                callback(false);
+            } else {
+                console.log(results);
+                if(results[0].exist==1){
+                    callback(true);
+                } else {
+                    callback(false);
+                }
+            }
+        }
+    )
+}

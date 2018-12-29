@@ -8,11 +8,14 @@
   },
   "dependencies": {
     "express": "^4.13.3",
+    "express-ws": "^4.0.0",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
     "os": "^0.1.1",
     "redis": "^2.8.0",
-    "sha.js": "^2.4.11"
+    "sha.js": "^2.4.11",
+    "websocket": "^1.0.28",
+    "ws": "^6.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

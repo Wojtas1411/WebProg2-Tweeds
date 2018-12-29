@@ -22,9 +22,10 @@ var generate_random_string = function(){
     return text;
 }
 
+//dont use this
 exports.authenticate = function(req, res){
 
-    var r1 = req.params.r1;
+    var r1 = req.query.r1;
     var r2 = generate_random_string();
 
     //TODO open websocket
@@ -70,6 +71,60 @@ exports.authenticate = function(req, res){
             }
         });
     }
+}
+
+//dummy
+
+var r1;
+var r2;
+
+exports.login1 = function(req, res){
+    var r1 = req.query.r1;
+    var r2 = generate_random_string();
+    res.send(r2);
+}
+
+exports.login2 = function(req, res){
+    var login = req.query.login;
+    var hashstr = req.query.hashstr;
+
+    users_manager.get_user_by_username(login, function(result){
+        user = result;
+            if(user==false){
+                res.send("Invalid login")
+            } else if(user.enabled==0){
+                res.send("Invalid login")
+            } else {
+                var pwd_str = r1+user.password+r2;
+                var hash_str = new shajs.sha256().update(pwd_str).digest('hex');
+                //debug
+                console.log(hash_str);
+                console.log(hashstr);
+                
+                if(hashstr.localeCompare(hash_str) == 0){
+                    // generate sessionID
+                    var session = {
+                        id: generate_new_session_id(),
+                        user: user,
+                        timestamp: new Date(),
+                        address: req.getHeader("referer")
+                        //TODO edit address
+                    }
+                    // save session
+                    session_manager.add_new_session(session);
+                    // respond with sessionID
+                    res.send(session.id);
+                } else {
+                    res.send("Invalid login");
+                }
+            }
+    });
+
+}
+
+exports.logout = function(req, res){
+    session_manager.invalidate_session(req.query.session_id);
+    res.send("OK");
 }
 
 //TODO logout
