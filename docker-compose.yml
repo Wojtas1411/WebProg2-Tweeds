@@ -6,24 +6,12 @@ services:
     ports:
         - 80:80
     links:
-        - php
+        - node
     volumes:
         - ./www:/var/www/html
     networks:
         uln:
          ipv4_address: 10.6.0.2
-
-  php:
-    build: ./php/
-    expose:
-        - 9000
-    links:
-        - mysql
-    volumes:
-        - ./www:/var/www/html
-    networks:
-        uln:
-         ipv4_address: 10.6.0.3
 
   mysql:
     image: mysql:latest
@@ -57,7 +45,7 @@ services:
     links:
          - mysql
     ports:
-         - "8081"
+         - 8081:8081
     networks:
         uln:
          ipv4_address: 10.6.0.6

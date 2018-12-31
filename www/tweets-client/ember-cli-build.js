@@ -11,6 +11,9 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import('node_modules/js-cookie/src/js.cookie');
+  //app.import('node_modules/sha.js/sha.js');
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
@@ -26,3 +29,4 @@ module.exports = function(defaults) {
 
   return app.toTree();
 };
+

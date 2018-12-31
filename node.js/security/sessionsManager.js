@@ -28,7 +28,7 @@ exports.init = function(){
 exports.add_new_session = function(session){
     for(var i=0; i<sessions.length; i++){
         if(sessions[i].user.username.localeCompare(session.user.username)==0){
-            session.splice(i,1)
+            sessions.splice(i,1)
             break;
         }
     }
@@ -61,7 +61,7 @@ exports.is_session_id_valid = function(session_id){
 exports.invalidate_session = function(session_id){
     for(var i=0; i<sessions.length; i++){
         if(session_id.localeCompare(sessions[i].id)==0){
-            session.splice(i,1)
+            sessions.splice(i,1)
             break;
         }
     }

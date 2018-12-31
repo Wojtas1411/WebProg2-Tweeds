@@ -1,3 +1,17 @@
 <div class="jumbotron">
-  {{#link-to 'login'}}Login{{/link-to}}
+  {{#if session.current_session}}
+    <button class="btn" {{action "logout"}} >Logout</button>
+    {{#link-to "tweets"}}Tweets{{/link-to}}
+    {{#link-to "channels"}}Channels{{/link-to}}
+  {{else}}
+    {{#link-to "login"}}Login{{/link-to}}
+  {{/if}}
+
 </div>
+
+<div class="flash-messages">
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-message flash=flash}}
+  {{/each}}
+</div>
+{{outlet}}

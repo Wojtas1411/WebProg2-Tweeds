@@ -12,9 +12,16 @@ var session_manager = require("./security/sessionsManager")
 users_repo = require("./repos/users");
 reg_repo = require("./repos/registers")
 
+app.use(function (req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Acess-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //test
 app.get('/database', function(req, res, next) {
-  session_manager.init();
+  // session_manager.init();
   // reg_repo.is_user_registerd_to_course(1,2, function(result){
   //   if(result){
   //     console.log("catchyea");
@@ -51,15 +58,15 @@ app.delete('/channels', function(req, res, next){
 });
 
 //TODO login1
-app.post('/login1', function(req, res, next){
+app.post('/login1/:r1', function(req, res, next){
   api.login1(req, res);
 });
 //TODO login2
-app.post('/login2', function(req, res, next){
+app.post('/login2/:login/:hashstr', function(req, res, next){
   api.login2(req, res);
 });
 //TODO logout
-app.post('logout', function(req, res, next){
+app.post('/logout/:session', function(req, res, next){
   api.logout(req, res);
 });
 

@@ -79,14 +79,18 @@ var r1;
 var r2;
 
 exports.login1 = function(req, res){
-    r1 = req.query.r1;
+    //console.log(req);
+    r1 = req.params.r1;
     r2 = generate_random_string();
+    console.log("Login1");
+    console.log(r1);
     res.send(r2);
 }
 
 exports.login2 = function(req, res){
-    var login = req.query.login;
-    var hashstr = req.query.hashstr;
+    var login = req.params.login;
+    var hashstr = req.params.hashstr;
+    console.log("Login2");
 
     users_manager.get_user_by_username(login, function(result){
         user = result;
@@ -107,9 +111,10 @@ exports.login2 = function(req, res){
                         id: generate_new_session_id(),
                         user: user,
                         timestamp: new Date(),
-                        address: req.getHeader("referer")
+                        // address: req.getHeader("referer")
                         //TODO edit address
                     }
+                    console.log(session.id);
                     // save session
                     session_manager.add_new_session(session);
                     // respond with sessionID
@@ -123,7 +128,9 @@ exports.login2 = function(req, res){
 }
 
 exports.logout = function(req, res){
-    session_manager.invalidate_session(req.query.session_id);
+    console.log("Logout");
+    console.log(req.params.session);
+    session_manager.invalidate_session(req.params.session);
     res.send("OK");
 }
 
