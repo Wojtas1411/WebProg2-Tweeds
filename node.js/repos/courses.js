@@ -107,3 +107,19 @@ exports.get_all_courses_with_registers = function(user_id, callback){
     )
 
 }
+
+exports.get_courses_of_user = function(user_id, callback){
+    client.execute(
+        "SELECT c.id as id, c.name FROM courses c INNER JOIN registers r ON c.id = r.course_id where r.user_id=?",
+    [user_id],
+    function(err, results){
+        if(err){
+            console.log("Error fetching courses of user");
+            console.log("error");
+            callback(false);
+        } else {
+            console.log("Courses of user fetched")
+            callback(results);
+        }
+    })
+}

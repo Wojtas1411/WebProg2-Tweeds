@@ -9,7 +9,8 @@ export default Controller.extend({
       let {userName, password} = this.getProperties('userName', 'password');
       this.get("session").login(userName, password).then(()=>{
         this.get('flashMessages').success('You have signed in successfully');
-        this.transitionToPreviousRoute();
+        this.transitionToRoute('tweets');
+        //this.transitionToPreviousRoute();
       }).catch((reason)=>{
         this.get('flashMessages').danger(reason);
       })

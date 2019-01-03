@@ -1,1 +1,30 @@
-{{outlet}}
+<div class="jumbotron align-content-center">
+  <h1>Tweets</h1>
+</div>
+
+<div class="container align-content-center">
+  <h3>
+    New tweet
+  </h3>
+  <div class="field">
+    <label>Course</label>
+    {{input value=course list="courses"}}
+    <datalist id="courses">
+      {{#each model.channels as |element|}}
+        <option>{{element.name}}</option>
+      {{/each}}
+    </datalist>
+  </div>
+  <div class="field">
+    <label>Content</label>
+    {{textarea value=content cols="80" rows="2"}}
+  </div>
+  <button class="btn btn-primary" {{action "send"}}>Send</button>
+</div>
+
+<div class="jumbotron align-content-center">
+  {{#each model.tweets as |tweetUnit|}}
+    {{tweets-component tweet=tweetUnit}}
+  {{/each}}
+</div>
+

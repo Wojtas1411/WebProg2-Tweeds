@@ -13,8 +13,10 @@ request query
 session_id
 */
 exports.get_newest_tweets = function(req, res){
-    if(sessions_manager.is_session_id_valid(req.query.session_id)){
-        tweets_repo.get_newest_tweets(req, res);
+    console.log("Get newest tweets");
+    console.log(req.params.session_id);
+    if(sessions_manager.is_session_id_valid(req.params.session_id)){
+        tweets_repo.get_newest(req, res);
     } else {
         res.send("Invalid session");
     }
@@ -25,12 +27,33 @@ request params
 session_id
 */
 exports.get_channels = function(req, res){
-    console.log(req.query.session_id);
-    if(sessions_manager.is_session_id_valid(req.query.session_id)){
-        var userid = sessions_manager.get_user_id_from_session(req.query.session_id);
+    console.log(req.params.session_id);
+    if(sessions_manager.is_session_id_valid(req.params.session_id)){
+        var userid = sessions_manager.get_user_id_from_session(req.params.session_id);
         console.log(userid);
         if(userid!=false){
             courses_repo.get_all_courses_with_registers(userid, function(result){
+                if(result!=false){
+                    res.send(JSON.stringify(result));
+                } else {
+                    res.send("error - no channels found");
+                }
+            });
+        } else {
+            res.send("error - not identified");
+        }
+    } else {
+        res.send("Invalid session");
+    }
+}
+
+exports.get_registerd_channels = function(req, res){
+    console.log(req.params.session_id);
+    if(sessions_manager.is_session_id_valid(req.params.session_id)){
+        var userid = sessions_manager.get_user_id_from_session(req.params.session_id);
+        console.log("userid: "+userid);
+        if(userid!=false){
+            courses_repo.get_courses_of_user(userid, function(result){
                 if(result!=false){
                     res.send(JSON.stringify(result));
                 } else {
@@ -51,12 +74,14 @@ session_id
 course_id
 */
 exports.register_to_channel = function(req, res){
-    if(sessions_manager.is_session_id_valid(req.query.session_id)){
-        var userid = sessions_manager.get_user_id_from_session(req.query.session_id);
+    console.log("follow");
+    if(sessions_manager.is_session_id_valid(req.params.session_id)){
+        var userid = sessions_manager.get_user_id_from_session(req.params.session_id);
         if(userid!=false){
-            registers_repo.add_register(userid, req.query.course_id, function(result){
+            registers_repo.add_register(userid, req.params.course_id, function(result){
                 if(result == true){
                     res.send("success");
+                    console.log("success");
                 } else {
                     res.send("error");
                 }
@@ -75,11 +100,13 @@ session_id
 course_id
 */
 exports.unregister_from_channel = function(req, res){
-    if(sessions_manager.is_session_id_valid(req.query.session_id)){
-        var userid = sessions_manager.get_user_id_from_session(req.query.session_id);
+    console.log("unfollow");
+    if(sessions_manager.is_session_id_valid(req.params.session_id)){
+        var userid = sessions_manager.get_user_id_from_session(req.params.session_id);
         if(userid!=false){
-            registers_repo.delete_register(userid, req.query.course_id, function(result){
+            registers_repo.delete_register(userid, req.params.course_id, function(result){
                 if(result == true){
+                    console.log("success");
                     res.send("success");
                 } else {
                     res.send("error");
@@ -103,17 +130,24 @@ tweet
 >content
 >timestamp
 */
+
+//TODO
+
 exports.send_tweet = function(req, res){
-    if(sessions_manager.is_session_id_valid(req.query.session_id)){
-        var userid = sessions_manager.get_user_id_from_session(req.query.session_id);
+    console.log("sending tweet")
+    if(sessions_manager.is_session_id_valid(req.params.session_id)){
+        var userid = sessions_manager.get_user_id_from_session(req.params.session_id);
         if(userid!=false){
-            var tweet = JSON.parse(req.query.tweet);
-            tweet.user_id = userid;
+            var tweet = req.body;
+            console.log("request body")
+            console.log(tweet);
+            tweet.user = userid;
             tweet.timestamp = new Date();
+            console.log(tweet);
             tweets_repo.add_new(tweet, function(result){
                 if(result == true){
                     //change user id to username
-                    tweet.user_id = sessions_manager.get_username_from_session(req.query.session_id);
+                    tweet.user_id = sessions_manager.get_username_from_session(req.params.session_id);
 
                     //TODO send with websocket
 

@@ -1,1 +1,9 @@
-{{outlet}}
+<div class="jumbotron align-content-center">
+  <h1>Channels</h1>
+</div>
+
+<div class="jumbotron align-content-center">
+  {{#each model as |channelUnit|}}
+    {{channels-component channel=channelUnit}}
+  {{/each}}
+</div>

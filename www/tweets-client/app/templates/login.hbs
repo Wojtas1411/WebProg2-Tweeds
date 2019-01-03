@@ -1,11 +1,14 @@
-<h1>Login</h1>
-
-<div class="field">
-  <label>User Name</label>
-  {{input value=userName}}
+<div class="jumbotron">
+  <div class="container align-content-center">
+    <h1>Login</h1>
+    <div class="field">
+      <label>User Name</label>
+      {{input value=userName}}
+    </div>
+    <div class="field">
+      <label>Password</label>
+      {{input value=password type="password"}}
+    </div>
+    <button class="btn btn-primary" {{action "login"}}>Login</button>
+  </div>
 </div>
-<div class="field">
-  <label>Password</label>
-  {{input value=password type="password"}}
-</div>
-<button class="btn btn-primary" {{action "login"}}>Login</button>

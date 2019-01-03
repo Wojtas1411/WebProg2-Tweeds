@@ -8,6 +8,12 @@ var WebSocket = require('ws');
 var api = require("./api/functions");
 var login = require("./security/authentication");
 var session_manager = require("./security/sessionsManager")
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 users_repo = require("./repos/users");
 reg_repo = require("./repos/registers")
@@ -16,6 +22,7 @@ app.use(function (req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Acess-Control-Allow-Headers",
   "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods","GET,HEAD,POST,PUT,DELETE")
   next();
 });
 
@@ -33,27 +40,31 @@ app.get('/database', function(req, res, next) {
 });
 
 //get channels
-app.get('/channels', function(req, res, next){
+app.get('/channels/:session_id', function(req, res, next){
   api.get_channels(req, res)
+});
+//get registered channels
+app.get('/channels/reg/:session_id', function(req, res, next){
+  api.get_registerd_channels(req, res);
 });
 
 // send tweet
-app.put('/tweet', function(req, res, next){
+app.put('/tweet/:session_id', function(req, res, next){
   api.send_tweet(req, res);
 });
 
 // get newest tweets
-app.get('/tweet', function(req, res, next){
+app.get('/tweet/:session_id', function(req, res, next){
   api.get_newest_tweets(req, res);
 });
 
 // register to channel
-app.put('/channels', function(req, res, next){
+app.put('/channels/:course_id/:session_id', function(req, res, next){
   api.register_to_channel(req, res);
 });
 
 // unregister from channel
-app.delete('/channels', function(req, res, next){
+app.delete('/channels/:course_id/:session_id', function(req, res, next){
   api.unregister_from_channel(req, res);
 });
 

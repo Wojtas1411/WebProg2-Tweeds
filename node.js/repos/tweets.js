@@ -2,12 +2,12 @@ client = require("../datasources/db");
 session_manager = require("../security/sessionsManager")
 
 exports.get_newest = function(req, res){
-  var userid = session_manager.get_user_id_from_session(req.query.session_id);
+  var userid = session_manager.get_user_id_from_session(req.params.session_id);
   if(userid==false){
     res.send("error");
   } else {
     client.execute(
-      'SELECT * FROM `tweets` WHERE course_id in(SELECT course_id FROM registers WHERE user_id=?) ORDER BY timestamp DSC LIMIT 10',
+      'SELECT * FROM `tweets` WHERE course_id in(SELECT course_id FROM registers WHERE user_id=?) ORDER BY timestamp DESC LIMIT 10',
       [userid],
       function(err, results){
         if(err){

@@ -1,10 +1,11 @@
 <div class="jumbotron">
   {{#if session.current_session}}
-    <button class="btn" {{action "logout"}} >Logout</button>
-    {{#link-to "tweets"}}Tweets{{/link-to}}
-    {{#link-to "channels"}}Channels{{/link-to}}
+    Logged as {{session.current_user}}
+    <button class="btn btn-primary" {{action "logout"}} >Logout</button>
+    {{#link-to "tweets"}}<button class="btn-primary">Tweets</button>{{/link-to}}
+    {{#link-to "channels"}}<button class="btn-primary">Channels</button>{{/link-to}}
   {{else}}
-    {{#link-to "login"}}Login{{/link-to}}
+    {{#link-to "login"}}<button class="btn-primary">Login</button>{{/link-to}}
   {{/if}}
 
 </div>
