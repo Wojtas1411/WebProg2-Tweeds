@@ -23,6 +23,19 @@
 </div>
 
 <div class="jumbotron align-content-center">
+  {{#if newTweets}}
+    <div class="container">
+      <h3>Newest Tweets</h3>
+    </div>
+  {{/if}}
+
+
+  {{#each newTweets as |tweetUnit|}}
+    {{tweets-component tweet=tweetUnit}}
+  {{/each}}
+  <div class="container">
+    <h3>Older Tweets</h3>
+  </div>
   {{#each model.tweets as |tweetUnit|}}
     {{tweets-component tweet=tweetUnit}}
   {{/each}}

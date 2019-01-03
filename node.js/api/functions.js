@@ -148,16 +148,23 @@ exports.send_tweet = function(req, res){
                 if(result == true){
                     //change user id to username
                     tweet.user_id = sessions_manager.get_username_from_session(req.params.session_id);
-
-                    //TODO send with websocket
-
-                    //experiment
-                    for(var i=0; i<clients.length; i++){
-                        clients[i].send(JSON.stringify(tweet));
-                    }
-                    //dummy broadcast
-
-                    res.send("success");
+                    courses_repo.get_course_by_id(tweet.course, function(result){
+                        if(result != false){
+                            tweet.course_id = result.name;
+                            //experiment
+                            for(var i=0; i<clients.length; i++){
+                                if(clients[i].readyState == 1){
+                                    clients[i].send(JSON.stringify(tweet));
+                                }
+                            }
+                            //dummy broadcast
+                            res.send("success");
+                        } else {
+                            console.log("Next nasty error")
+                            res.send("error");
+                        }
+                    });
+                    
                 } else {
                     res.send("error");
                 }

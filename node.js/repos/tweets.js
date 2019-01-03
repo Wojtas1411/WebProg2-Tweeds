@@ -7,7 +7,10 @@ exports.get_newest = function(req, res){
     res.send("error");
   } else {
     client.execute(
-      'SELECT * FROM `tweets` WHERE course_id in(SELECT course_id FROM registers WHERE user_id=?) ORDER BY timestamp DESC LIMIT 10',
+      `SELECT t.id, t.content, t.timestamp, c.name as course_id, u.username as user_id FROM tweets t
+      INNER JOIN courses c ON c.id = t.course_id
+      INNER JOIN users u on t.user_id = u.id
+    WHERE t.course_id in(SELECT course_id FROM registers WHERE user_id=?) ORDER BY timestamp DESC LIMIT 10`,
       [userid],
       function(err, results){
         if(err){

@@ -3,19 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f6a661cb-1a5a-4e84-ac80-224f203ac81b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../node.js/api/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../node.js/api/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../node.js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../node.js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../node.js/repos/tweets.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../node.js/repos/tweets.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/adapters/tweet.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/adapters/tweet.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/channel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/tweet.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/tweet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/channels.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/channels.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/tweets.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/tweets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/application.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/application.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/channels.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/channels.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/login.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tweets.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tweets.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/components/tweets-component.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/components/tweets-component.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/tweets.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/tweets.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,20 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/tweets.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+            <state relative-caret-position="279">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tweets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+            <state relative-caret-position="405">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -53,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/app/services/session.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -76,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes/tweets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="35" column="8" lean-forward="true" selection-start-line="24" selection-start-column="6" selection-end-line="35" selection-end-column="8" />
+            <state relative-caret-position="90">
+              <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -88,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/components/tweets-component.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="165">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -98,7 +93,19 @@
         <entry file="file://$PROJECT_DIR$/app/templates/login.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,18 +115,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
               <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="60" lean-forward="true" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -140,20 +135,20 @@
         <option value="$PROJECT_DIR$/app/controllers/application.js" />
         <option value="$PROJECT_DIR$/app/services/session.js" />
         <option value="$PROJECT_DIR$/app/adapters/tweet.js" />
-        <option value="$PROJECT_DIR$/app/controllers/login.js" />
         <option value="$PROJECT_DIR$/app/models/tweet.js" />
         <option value="$PROJECT_DIR$/app/models/channel.js" />
         <option value="$PROJECT_DIR$/app/components/tweets-component.js" />
-        <option value="$PROJECT_DIR$/app/templates/components/tweets-component.hbs" />
         <option value="$PROJECT_DIR$/app/templates/channels.hbs" />
         <option value="$PROJECT_DIR$/app/routes/channels.js" />
         <option value="$PROJECT_DIR$/app/templates/components/channels-component.hbs" />
         <option value="$PROJECT_DIR$/app/components/channels-component.js" />
         <option value="$PROJECT_DIR$/app/templates/login.hbs" />
         <option value="$PROJECT_DIR$/app/templates/application.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/tweets.hbs" />
-        <option value="$PROJECT_DIR$/app/routes/tweets.js" />
+        <option value="$PROJECT_DIR$/app/controllers/login.js" />
+        <option value="$PROJECT_DIR$/app/templates/components/tweets-component.hbs" />
         <option value="$PROJECT_DIR$/app/controllers/tweets.js" />
+        <option value="$PROJECT_DIR$/app/routes/tweets.js" />
+        <option value="$PROJECT_DIR$/app/templates/tweets.hbs" />
       </list>
     </option>
   </component>
@@ -265,12 +260,12 @@
       <workItem from="1546251331409" duration="14164000" />
       <workItem from="1546441798476" duration="19960000" />
       <workItem from="1546506231297" duration="1052000" />
-      <workItem from="1546536799560" duration="7670000" />
+      <workItem from="1546536799560" duration="14601000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66047000" />
+    <option name="totallyTimeSpent" value="72978000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -324,13 +319,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.eslintrc.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -349,11 +337,6 @@
         <state relative-caret-position="45">
           <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="5" selection-end-column="3" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.ember-cli">
@@ -440,23 +423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes/channels.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/application.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/channels-component.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -474,17 +440,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="48" column="33" lean-forward="true" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes/channels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/application.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/login.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/components/tweets-component.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="165">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tweets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes/tweets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="35" column="8" lean-forward="true" selection-start-line="24" selection-start-column="6" selection-end-line="35" selection-end-column="8" />
+        <state relative-caret-position="90">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -493,45 +527,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/tweets.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/session.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/login.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="60" lean-forward="true" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tweets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="279">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>

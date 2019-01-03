@@ -26,8 +26,5 @@ export default Controller.extend({
       this.transitionToRoute('login');
     }
   },
-  test(){
-    $.post()
-  }
 
 });
