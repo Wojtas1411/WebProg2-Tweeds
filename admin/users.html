@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Admin Console</title>
+
+        <!--jquery-->
+        <script src="jquery-3.3.1.min.js"></script>
+
+        <!--sha256-->
+        <script src="sha256.min.js"></script>
+
+        <!--bootstrap-->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            -->
+        <style>
+            table, th, td {
+                padding: 5px;
+            }
+        </style>
+        
+    </head>
+
+    <body onload="startup();">
+        <script>
+            function enable(id){
+                $.ajax({
+                    method:"POST",
+                    url: "http://10.6.0.6:8081/admin/users/enable/"+id+"/"+document.cookie
+                }).then((data)=>{
+                    console.log(data);
+                    location.reload()
+                },()=>{
+                    console.log("request failed")
+                })
+            }
+            function disable(id){
+                $.ajax({
+                    method:"POST",
+                    url: "http://10.6.0.6:8081/admin/users/disable/"+id+"/"+document.cookie
+                }).then((data)=>{
+                    console.log(data);
+                    location.reload()
+                },()=>{
+                    console.log("request failed")
+                })
+            }
+        </script>
+        <script>
+            function startup(){
+                $.getJSON("http://10.6.0.6:8081/admin/users/"+document.cookie).then((data)=>{
+                    var target = document.getElementById("data");
+                    for(var i=0; i<data.length; i++){
+                        var row = document.createElement("tr");
+                        var temp = document.createElement("td")
+                        temp.innerHTML = data[i].id
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        temp.innerHTML = data[i].username
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        temp.innerHTML = data[i].password
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        temp.innerHTML = data[i].enabled
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        var button = document.createElement("BUTTON")
+                        button.id = data[i].id;
+                        if(data[i].enabled == 1){
+                            button.onclick = function(){
+                                disable(this.id)
+                                console.log(this.id)
+                            }
+                            
+                            button.innerHTML = "Disable";
+                        } else {
+                            button.onclick = function(){
+                                enable(this.id)
+                                console.log(this.id)
+                            }
+                            
+                            button.innerHTML = "Enable";
+                        }
+                        temp.appendChild(button);
+                        row.appendChild(temp)
+                        target.appendChild(row);
+                    }
+                },()=>{
+                    console.log("failed to get data");
+                })
+            }
+        </script>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>
+                    Users
+                </h1>
+                <a href="./index.html">Login</a>
+                <a href="./courses.html">Courses</a>
+                <a href="./user_create.html">Create</a>
+                
+            </div>
+        </div>
+
+        <table id="data">
+                
+                    <tr>
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            username
+                        </th>
+                        <th>
+                            password
+                        </th>
+                        <th>
+                            status
+                        </th>
+                    </tr>
+
+        </table>
+        
+    </body>
+
+    </html>

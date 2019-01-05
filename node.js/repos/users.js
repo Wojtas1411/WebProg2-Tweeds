@@ -41,7 +41,7 @@ exports.get_user_by_username = function(username, callback){
 
 exports.disable_user = function(id){
     client.execute(
-        "UPDATE 'users' SET enabled = 0 WHERE id = ?",
+        "UPDATE users SET enabled = 0 WHERE id=?",
         [id],
         function(err, results, fields){
             if(err) throw err;
@@ -53,7 +53,7 @@ exports.disable_user = function(id){
 
 exports.enable_user = function(id){
     client.execute(
-        "UPDATE 'users' SET enabled = 1 WHERE id = ?",
+        "UPDATE users SET enabled = 1 WHERE id=?",
         [id],
         function(err, results, fields){
             if(err) throw err;
@@ -65,8 +65,8 @@ exports.enable_user = function(id){
 
 exports.create_user = function(user){
     client.execute(
-        "INSERT INTO `users` (username, password, active) VALUES(?, ?, ?)",
-        [user.username, user.password, user.active],
+        "INSERT INTO `users` (username, password, enabled) VALUES(?, ?, ?)",
+        [user.username, user.password, user.enabled],
         function(err, results){
             if(err) throw err;
             console.log("User ${user.username} added");

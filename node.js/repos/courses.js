@@ -55,7 +55,7 @@ exports.create_course = function(course, callback){
 
 exports.update_course = function(course, callback){
     client.execute(
-        "UPDATE courses SET name = ? program = ? lecturer = ? WHERE id = ?",
+        "UPDATE courses SET name = ?, program = ?, lecturer = ? WHERE id = ?",
         [course.name, course.program, course.lecturer, course.id],
         function(err, results){
             if(err) {
@@ -71,10 +71,10 @@ exports.update_course = function(course, callback){
 
 }
 
-exports.delete_course = function(course, callback){
+exports.delete_course = function(id, callback){
     client.execute(
         "DELETE FROM courses WHERE id = ?",
-        [course.id],
+        [id],
         function(err, results){
             if(err) {
                 console.log("Failed to delete course");

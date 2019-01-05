@@ -26,6 +26,7 @@ app.use(function (req, res, next){
   next();
 });
 
+/*
 //test
 app.get('/database', function(req, res, next) {
   // session_manager.init();
@@ -38,6 +39,7 @@ app.get('/database', function(req, res, next) {
   // });
   users_repo.list_all_users_json(req, res);
 });
+*/
 
 //get channels
 app.get('/channels/:session_id', function(req, res, next){
@@ -68,17 +70,144 @@ app.delete('/channels/:course_id/:session_id', function(req, res, next){
   api.unregister_from_channel(req, res);
 });
 
-//TODO login1
+// login1
 app.post('/login1/:r1', function(req, res, next){
   api.login1(req, res);
 });
-//TODO login2
+// login2
 app.post('/login2/:login/:hashstr', function(req, res, next){
   api.login2(req, res);
 });
-//TODO logout
+// logout
 app.post('/logout/:session', function(req, res, next){
   api.logout(req, res);
+});
+
+// admin login and logout
+var admin = require("./security/admin");
+app.post('/admin/login', function(req, res, next){
+  var login = req.body.login;
+  var hashpwd = req.body.hashpwd;
+  res.send(admin.login(login, hashpwd));
+});
+
+app.post('/admin/logout', function(req, res, next){
+  admin.invalidate()
+  res.send("OK");
+});
+
+// admin user management
+app.get('/admin/users/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    users_repo.list_all_users_json(req, res);
+  } else {
+    res.send("Invalid Session")
+  }
+});
+
+app.post('/admin/users/enable/:id/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    users_repo.enable_user(req.params.id);
+    res.send("OK")
+  } else {
+    res.send("Invalid Session");
+  }
+});
+
+app.post('/admin/users/disable/:id/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    users_repo.disable_user(req.params.id);
+    res.send("OK")
+  } else {
+    res.send("Invalid Session");
+  }
+});
+
+app.put('/admin/users/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    var user = req.body;
+    user.enabled = 1;
+    users_repo.create_user(user);
+    res.send("OK");
+  } else {
+    res.send("Invalid Session");
+  }
+});
+
+// admin channels management
+var courses_repo = require("./repos/courses");
+app.get('/admin/courses/:session',function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    courses_repo.get_all_courses(function(result){
+      if(result != false){
+        console.log("Courses fetched");
+        res.send(JSON.stringify(result));
+      } else {
+        res.send("failed");
+      }
+    })
+  } else {
+    res.send("Invalid Session");
+  }
+});
+
+app.get('/admin/courses/:id/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    var id = req.params.id;
+    courses_repo.get_course_by_id(id, function(result){
+      if(result != false){
+        console.log("Single Courses fetched");
+        res.send(result);
+      } else {
+        res.send("failed");
+      }
+    })
+   } else {
+    res.send("Invalid Session");
+  }
+});
+
+app.post('/admin/courses/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    courses_repo.update_course(req.body, function(result){
+      if(result){
+        res.send("OK");
+      } else {
+        res.send("failed");
+      }
+    })
+  } else {
+    res.send("Invalid Session");
+  }
+});
+
+app.put('/admin/courses/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    console.log(req.body);
+    courses_repo.create_course(req.body, function(result){
+      if(result){
+        res.send("OK");
+      } else {
+        res.send("failed");
+      }
+    })
+  } else {
+    res.send("Invalid Session");
+  }
+});
+
+app.delete('/admin/courses/:id/:session', function(req, res, next){
+  if(admin.is_session_valid(req.params.session)){
+    courses_repo.delete_course(req.params.id, function(result){
+      if(result){
+        res.send("OK");
+      } else {
+        res.send("failed");
+      }
+    })
+  } else {
+    res.send("Invalid Session");
+  }
 });
 
 //create http server

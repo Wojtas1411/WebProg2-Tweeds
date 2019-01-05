@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Admin Console</title>
+
+        <!--jquery-->
+        <script src="jquery-3.3.1.min.js"></script>
+
+        <!--sha256-->
+        <script src="sha256.min.js"></script>
+
+        <!--bootstrap-->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            -->
+
+            <style>
+                    table, th, td {
+                        padding: 5px;
+                    }
+                </style>
+        
+    </head>
+
+    <body onload="startup();">
+        <script>
+            function edit(id){
+                window.location.href = "./course_edit.html?id="+id
+            }
+            function deletem(id){
+                $.ajax({
+                    method:"DELETE",
+                    url: "http://10.6.0.6:8081/admin/courses/"+id+"/"+document.cookie
+                }).then((data)=>{
+                    console.log(data);
+                    if(data.localeCompare("OK")==0){
+                        location.reload();
+                    } else {
+                        console.log("Failed to create user");
+                    }
+                },()=>{
+                    console.log("request failed")
+                })
+            }
+        </script>
+        <script>
+            function startup(){
+                $.getJSON("http://10.6.0.6:8081/admin/courses/"+document.cookie).then((data)=>{
+                    var target = document.getElementById("data");
+                    for(var i=0; i<data.length; i++){
+                        var row = document.createElement("tr");
+                        var temp = document.createElement("td")
+                        temp.innerHTML = data[i].id
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        temp.innerHTML = data[i].name
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        temp.innerHTML = data[i].lecturer
+                        row.appendChild(temp)
+                        temp = document.createElement("td")
+                        temp.innerHTML = data[i].program
+                        row.appendChild(temp);
+                        temp = document.createElement("td")
+                        var button1 = document.createElement("button")
+                        button1.name = data[i].id;
+                        button1.onclick = function(){
+                            edit(this.name);
+                        }
+                        button1.innerHTML="Edit";
+                        temp.appendChild(button1);
+                        row.appendChild(temp);
+                        temp = document.createElement("td")
+                        var button2 = document.createElement("button")
+                        button2.id = data[i].id;
+                        button2.onclick = function(){
+                            deletem(this.id);
+                        }
+                        button2.innerHTML="Delete";
+                        temp.appendChild(button2);
+                        row.appendChild(temp)
+                        target.appendChild(row);
+                    }
+                },()=>{
+                    console.log("failed to get data");
+                })
+            }
+        </script>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>
+                    Courses
+                </h1>
+                
+                <a href="./index.html">Login</a>
+                <a href="./users.html">Users</a>
+                <a href="./course_create.html">Create</a>
+                
+            </div>
+        </div>
+        <table id="data">
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        name
+                    </th>
+                    <th>
+                        lecturer
+                    </th>
+                    <th>
+                        program
+                    </th>
+                </tr>
+
+    </table>
+    </body>
+
+    </html>

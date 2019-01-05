@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Admin Login</title>
+
+        <!--jquery-->
+        <script src="jquery-3.3.1.min.js"></script>
+
+        <!--sha256-->
+        <script src="sha256.min.js"></script>
+
+        <!--bootstrap-->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            -->
+        
+    </head>
+
+    <body>
+        <script>
+            function dologin(){
+                var login = document.getElementById("login").value;
+                var password = document.getElementById("password").value;
+                //console.log(login+" "+password);
+                
+                $.ajax({
+                    method: "POST",
+                    url: "http://10.6.0.6:8081/admin/login",
+                    data: {
+                        login: login,
+                        hashpwd: sha256.create().update(password).hex()
+                    }
+                }).then((data)=>{
+                    console.log(data)
+                    if(data == false){
+                        console.log("failed to login")
+                    } else {
+                        document.cookie=data;
+                        console.log(data);
+                        window.location.href = "./users.html"
+                    }
+                },()=>{
+                    console.log("failed to login")
+                })
+            }
+        </script>
+        <div class="jumbotron">
+                <div class="container">
+                        <h1>
+                            Login
+                        </h1>
+                        
+                            <div class="row">
+                                <div class="col">
+                                    <label>
+                                        Login
+                                    </label></br>
+                                    <input type="text" id="login"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>
+                                        Password
+                                    </label></br>
+                                    <input type="password" id="password"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button onclick="dologin()">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        
+                        
+                </div>
+        </div>
+        
+    </body>
+</html>

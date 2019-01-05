@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Admin Console</title>
+
+        <!--jquery-->
+        <script src="jquery-3.3.1.min.js"></script>
+
+        <!--sha256-->
+        <script src="sha256.min.js"></script>
+
+        <!--bootstrap-->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            -->
+
+            <style>
+                    table, th, td {
+                        padding: 5px;
+                    }
+            </style>
+        
+    </head>
+    
+
+    <body>
+        <script>
+            function send(course){
+                $.ajax({
+                    method:"PUT",
+                    url: "http://10.6.0.6:8081/admin/courses/"+document.cookie,
+                    data: course
+                }).then((data)=>{
+                    console.log(data);
+                    if(data.localeCompare("OK")==0){
+                        location.reload();
+                    } else {
+                        console.log("Failed to create user");
+                    }
+                },()=>{
+                    console.log("request failed")
+                })
+            }
+            function prepare(){
+                var course={
+                    name: document.getElementById("name").value,
+                    lecturer: document.getElementById("lecturer").value,
+                    program: document.getElementById("program").value,
+                }
+                send(course);
+            }
+        </script>
+
+        
+            <div class="jumbotron">
+                    <div class="container">
+                        <h1>
+                            Users
+                        </h1>
+                        <a href="./index.html">Login</a>
+                        <a href="./courses.html">Courses</a>
+                        <a href="./user_create.html">Create</a>
+                        
+                    </div>
+                </div>
+        
+                <table id="data">
+                    <tr>
+                        <td>
+                            <label>Name</label><br>
+                            <input type="text" id="name">
+                        </td>
+                        <td>
+                            <label>Lecturer</label><br>
+                            <input type="text" id="lecturer">
+                        </td>
+                        <td>
+                            <label>Program</label><br>
+                            <input type="text" id="program">
+                        </td>
+                        <td>
+                            <button onclick="prepare()">Create</button>
+                        </td>
+                    </tr>
+                </table>
+    </body>
+
+    </html>
